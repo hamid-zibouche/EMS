@@ -1,0 +1,37 @@
+<body class="container">
+<div class="container box p-4">
+  <h2 class="text-center">Connexion</h2>
+  <ng-form (ngSubmit)="login()" class="mt-4">
+    <div class="mb-3">
+      <label for="username" class="form-label">Nom d'utilisateur:</label>
+
+      <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control" required>
+      <i class="bi bi-person-fill"></i>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe:</label>
+
+      <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" required>
+      <i class="bi bi-key-fill"></i>
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label" for="rememberMe">
+        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe"/>
+        <span>Remember me</span>
+      </label>
+    </div>
+
+
+    <div class="d-grid gap-2">
+    <button type="submit" class="btn btn-primary" [routerLink]="['/home']" >Se connecter</button>
+    </div>
+  </ng-form>
+
+  <div class="footer-copyright text-center py-3">
+    © 2023 Copyright:
+    <a href="https://www.go-easier.com/"> www.go-easier.com</a>
+  </div>
+
+</div>
+</body>

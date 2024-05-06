@@ -1,0 +1,17 @@
+.disabled{
+  color: #a0a7ac;
+
+}
+.pointer{
+  cursor: not-allowed;
+}
+.nav-footer{
+  color: #a0a7ac;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  cursor:context-menu;
+}
+ul{
+  height: 100%;
+}

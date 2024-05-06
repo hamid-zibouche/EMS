@@ -1,0 +1,46 @@
+<button class="btn btn-info d-flex my-2" (click)="IsNewBadge()">
+  <span class="material-icons m-1">{{showBadge? 'visibility_off':'visibility'}} </span>
+  <span class="m-1">{{ showBadge ? 'Cacher':'Afficher' }}</span>
+   <span class="m-1">Nouveau</span>
+</button>
+<div class="my-2 ">
+  <div class="row d-flex" >
+    <div class="col-md-4">
+      <span>Filter actuel: </span>
+      <b>{{hotelFilter}}</b>
+    </div>
+    <div class="col-md-8 form-group">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="hotelFilter"
+        >
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-primary" (click)="hiddenBox()" *ngIf="isHidden" >
+  <p>{{receivedRating}}</p>
+</div>
+
+<div class="card-group" >
+  <div  class="card mx-2 mb-4" style="width: 18rem;"  *ngFor="let hotel Of filtereHotels" >
+    <img [src]="hotel.hotelUrl" class="card-img-top" [title]="hotel.hotelName | uppercase" [alt]="hotel.hotelName">
+    <div class="card-body">
+      <h5 class="card-title">{{ hotel.hotelName  | ReplaceComma }}</h5>
+      <p class="card-text">{{hotel.description}}</p>
+      <span class="badge rounded-pill text-bg-info" *ngIf="showBadge">Nouveau</span>
+      <p class="card-text">
+        {{hotel.price | currency:'EUR':'symbol':'1.2-2':'fr'}}
+      </p>
+      <app-star-rating [rating]="hotel.Rating" (starRatingClicked)="receiveRatingClick($event)" ></app-star-rating>
+
+      <p class="card-text">
+        {{getDate() | date:'medium'}}
+      </p>
+      <div [routerLink]="['/hotels',hotel.hotelId]" routerLinkActive="active" ariaCurrentWhenActive="page" style="cursor:pointer">
+        <i class="fleche bi bi-arrow-right-circle-fill"></i>
+      </div>
+    </div>
+  </div>
+</div>
