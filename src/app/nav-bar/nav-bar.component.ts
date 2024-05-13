@@ -55,7 +55,7 @@ export class NavBarComponent {
     const lis = document.querySelectorAll('.navigation li');
     lis.forEach(li => {
       const anchor = li.querySelector('a');
-      if(anchor && currentUrl == "/login"){
+      if(anchor && (currentUrl == "/login" || currentUrl == "/register")){
         console.log("ok login")
         anchor.classList.add("nav-link","disabled")
         li.classList.add("pointer");

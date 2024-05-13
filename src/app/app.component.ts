@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {HotelComponent} from "./hotel/hotel.component";
 import {CommonModule} from "@angular/common";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {NavBarComponent} from "./nav-bar/nav-bar.component";
@@ -13,7 +12,6 @@ import {NavBarService} from "./nav-bar/nav-bar.service";
   standalone: true,
   imports: [
     FormsModule,
-    HotelComponent,
     CommonModule,
     RouterOutlet,
     RouterLink,

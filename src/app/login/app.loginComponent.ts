@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {HotelComponent} from "../hotel/hotel.component";
 import {isNgContainer} from "@angular/compiler";
 import { CommonModule } from '@angular/common';
 import {RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -13,7 +12,6 @@ import {RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [
     FormsModule,
-    HotelComponent,
     CommonModule,
     RouterOutlet,
     RouterLink,
