@@ -8,8 +8,6 @@ import {
 } from '@angular/router';
 import {Observable} from "rxjs";
 import {Injectable, Injector} from "@angular/core";
-import {HotelListService} from "./services/hotel-list.service";
-import {IHotel} from "./hotel/IHotel";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,7 @@ import {IHotel} from "./hotel/IHotel";
 export class HotelGuard implements CanActivate{
 
 
-  constructor( private router:Router, public hotelService: HotelListService) {}
+  constructor( private router:Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log('next:',next)
