@@ -1,31 +1,25 @@
 import { Routes } from '@angular/router';
 
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/app.loginComponent";
-import {RegisterComponent} from "./register/register.component";
-import {SignOutComponent} from "./sign-out/sign-out.component";
+
 import {NF404Component} from "./nf404/nf404.component";
+import {HomeComponent} from "./home/home.component";
+import {authGuard} from "./guards/auth/auth.guard";
+import {ErrorKeycloakComponent} from "./error-keycloak/error-keycloak.component";
 
 export const routes: Routes = [
   {
-    path:'login',
-    component:LoginComponent
+    path:'ems',
+    component:HomeComponent,
+    /* canActivate: [authGuard] */
   },
   {
-    path:'home',
-    component:HomeComponent
-  },
-  {
-    path:'register',
-    component:RegisterComponent
-  },
-  {
-    path:'signout',
-    component:SignOutComponent
+    path:'errorkeycloakinit',
+    component:ErrorKeycloakComponent,
+    /* canActivate: [authGuard] */
   },
   {
     path:'',
-    redirectTo:'/login',
+    redirectTo:'/ems',
     pathMatch: 'full'
   },
   {

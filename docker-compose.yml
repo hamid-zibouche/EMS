@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  bsn-ui:
+    container_name: bsn-ui
+    image: bsn/bsn-ui:1.0.0
+    ports:
+      - "5500:8080"
+

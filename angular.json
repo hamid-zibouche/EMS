@@ -29,20 +29,24 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "keycloak-js",
+              "js-sha256"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "200kb",
+                  "maximumError": "500kb"
                 }
               ],
               "outputHashing": "all"
@@ -62,7 +66,8 @@
               "buildTarget": "test3:build:production"
             },
             "development": {
-              "buildTarget": "test3:build:development"
+              "buildTarget": "test3:build:development",
+              "port": 5500
             }
           },
           "defaultConfiguration": "development"

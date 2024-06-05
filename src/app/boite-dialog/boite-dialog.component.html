@@ -1,0 +1,19 @@
+<div class="filter-blanc active" [ngClass]="{ 'active': boiteIsActive }" >
+  <div class="boite" >
+    <button type="button" class="btn-close" aria-label="Close" (click)="toggleBoiteActive()"></button>
+    <h2>Roles</h2>
+    <hr>
+    <ng-container *ngIf="roles">
+      <div class="text-boite" *ngFor="let client of roles | keyvalue">
+        <h3>{{ client.key }}</h3>
+        <ul>
+          <li *ngFor="let role of client.value.roles">{{ role }}</li>
+        </ul>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!roles">
+      <p>No roles available.</p>
+    </ng-container>
+    <hr>
+  </div>
+</div>

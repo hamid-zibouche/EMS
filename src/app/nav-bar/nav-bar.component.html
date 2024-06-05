@@ -1,64 +1,23 @@
-<div class="navigation" [class.active]="isActive" >
-  <ul>
-    <li >
-      <a  class="d-lg-flex"  style="justify-content: center" >
-                        <span class="logo">
-                          <img src="assets/logo-jhipster.png" alt="Logo easier" height="70">
-                        </span>
-      </a>
-    </li>
+<div class="header" >
+  <img src="./assets/logo-jhipster.png" alt="Easier Logo" (click)="home()">
 
-    <li (click)="toggleHovered($event)" style=" display: flex; align-items: center; ">
-      <a [routerLink]="['/home']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span class="icon">
-                          <i class="bi bi-house-door"></i>
-                        </span>
-        <span class="title">Home</span>
-      </a>
-    </li>
+    <ul class="menu">
+      <li >
+        <a class="nav-link dropdown-toggle" role="button"  aria-expanded="false"  (click)="toggleDropdown()" >
+          <span class="username" *ngIf="!isSmallScreen">{{ username }}</span>
+          <i class="bi bi-three-dots-vertical" *ngIf="isSmallScreen"></i>
+        </a>
+        <ul class="dropdown-menu" [ngClass]="{ 'show': menuIsActive }" >
+          <li class="username-list" *ngIf="isSmallScreen"><i class="bi bi-person-fill"></i> {{ username }}</li>
+          <li><a class="dropdown-item" (click)="management();toggleDropdown()" ><i class="bi bi-person-fill-gear"></i> Manage Account</a></li>
+          <li><a class="dropdown-item" (click)="toggleBoiteActive();toggleDropdown()" ><i class="bi bi-list-task"></i> View Roles</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item logout" (click)="logout();toggleDropdown()"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+        </ul>
+      </li>
+    </ul>
 
-    <li (click)="toggleHovered($event)">
-      <a [routerLink]="['/help']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span class="icon">
-                          <i class="bi bi-info-circle"></i>
-                        </span>
-        <span class="title">Help</span>
-      </a>
-    </li>
-
-    <li (click)="toggleHovered($event)">
-      <a [routerLink]="['/settings']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span class="icon">
-                          <i class="bi bi-gear"></i>
-                        </span>
-        <span class="title">Settings</span>
-      </a>
-    </li>
-
-    <li (click)="toggleHovered($event)">
-      <a [routerLink]="['/password']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span class="icon">
-                          <i class="bi bi-lock"></i>
-                        </span>
-        <span class="title">Password</span>
-      </a>
-    </li>
-
-    <li (click)="toggleHovered($event)">
-      <a [routerLink]="['/signout']" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span class="icon">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </span>
-        <span class="title">Sign Out</span>
-      </a>
-    </li>
-
-      <span class="nav-footer" title="Commander Version 1.2.7" >
-        v1.2.7
-      </span>
-
-  </ul>
-
+  <div class="user-icon">
+    <img src="./assets/img_avatar.png" alt="User Icon" (click)="toggleDropdown()" >
+  </div>
 </div>
-
-

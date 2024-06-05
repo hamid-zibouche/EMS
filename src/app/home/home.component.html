@@ -1,1 +1,13 @@
-<p>Welcome To Commander v1.2.7</p>
+<app-nav-bar ></app-nav-bar>
+<div class="container link-container" (click)="fermerMenuActive()">
+  <div class="link-box mr" (click)="opensearch()">
+    <div class="opendashboard"></div>
+    <div class="logo-E"></div>
+    <a href="https://172.24.7.200/dashboard" target="_blank">OpenSearch</a>
+  </div>
+  <div class="link-box" (click)="commander()">
+    <div class="commander"></div>
+    <div class="logo-E"></div>
+    <a href="http://localhost:4200" target="_blank">Commander</a>
+  </div>
+</div>

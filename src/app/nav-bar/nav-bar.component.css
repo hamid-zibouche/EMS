@@ -1,17 +1,44 @@
-.disabled{
-  color: #a0a7ac;
+.menu{
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  display: inline-block;
+  position: absolute;
+  right: 150px;
+  top:40%;
+}
 
+.logout{
+  color: red;
 }
-.pointer{
-  cursor: not-allowed;
+
+li{
+  cursor: pointer;
+  user-select: none; /* Prevents text selection */
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
-.nav-footer{
-  color: #a0a7ac;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  cursor:context-menu;
+
+div img{
+  cursor: pointer;
+  user-select: none; /* Prevents text selection */
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
-ul{
-  height: 100%;
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #003366;
 }
+
+.username-list{
+  background: #bbbbbb;
+  cursor:auto;
+  text-align: center;
+  color: white;
+}
+
+
+
+

@@ -1,0 +1,8 @@
+{
+  "/realms": {
+    "target": "http://172.24.7.200:8890",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

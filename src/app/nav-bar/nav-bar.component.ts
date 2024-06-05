@@ -1,82 +1,92 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {NavigationEnd, Router, RouterLink, RouterLinkActive} from "@angular/router";
-import {filter, Subscription} from "rxjs";
-import {NavBarService} from "./nav-bar.service";
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
+
+import {NgClass, NgIf} from "@angular/common";
+import {KeycloakService} from "../services/keycloak/keycloak.service";
+import {BoiteActiveService} from "../shared/boitActive/boite-active.service";
+import {MenuActiveService} from "../shared/menuActive/menu-active.service";
+
+
+
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
   imports: [
     RouterLinkActive,
-    RouterLink
+    RouterLink,
+    NgClass,
+    NgIf
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
 
-  isActive: boolean = false;
-  private subscription: Subscription;
-  private selectedLi: HTMLElement | null = null;
+  public username:string|undefined
 
-  constructor(private sharedService: NavBarService ,private router: Router) {
-    this.subscription = this.sharedService.active$.subscribe(() => {
-      this.isActive = !this.isActive;
-      console.log(this.isActive);
-    });
-
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-       this.checkCurrentRoute();
-      });
+  constructor(private keycloakService: KeycloakService,private router: Router, private boiteActive:BoiteActiveService,private menuActive : MenuActiveService) {
   }
-  toggleHovered(event: Event) {
-    const currentUrl = this.router.url;
-    if(!(currentUrl == "/login")){
-      const target = event.currentTarget as HTMLElement;
-      if (this.selectedLi && this.selectedLi !== target) {
-        this.selectedLi.classList.remove('hovered');
-      }
-      target.classList.add('hovered');
-      this.selectedLi = target as HTMLElement;
-      console.log(target)
+
+  public menuIsActive: boolean = false;
+  toggleDropdown() {
+    this.menuActive.toggleMenuActive();
+    console.log(this.menuIsActive);
+  }
+
+  ngOnInit(): void {
+    /* this.toggleDropdown(); */
+    if(this.profile){
+    this.username = this.profile.username;
     }
-  }
-
-
-  ngOnInit() {
-    this.checkCurrentRoute();
-  }
-
-  // pour access via url direct
- private checkCurrentRoute() {
-    const currentUrl = this.router.url;
-    const lis = document.querySelectorAll('.navigation li');
-    lis.forEach(li => {
-      const anchor = li.querySelector('a');
-      if(anchor && (currentUrl == "/login" || currentUrl == "/register")){
-        console.log("ok login")
-        anchor.classList.add("nav-link","disabled")
-        li.classList.add("pointer");
-      }else
-      if (anchor && anchor.pathname === currentUrl) {
-        console.log(typeof currentUrl+" : "+typeof anchor.pathname);
-        li.classList.add("hovered");
-        anchor.classList.remove("disabled");
-       li.classList.remove("pointer");
-        if (!! this.selectedLi){
-          this.selectedLi.classList.remove('hovered');
-        }
-        this.selectedLi = li as HTMLElement;
-        console.log('ok');
-      }else if(anchor){
-        anchor.classList.remove("disabled");
-        li.classList.remove("pointer");
-        console.log('else')
-      }
+    this.checkScreenSize();
+    this.boiteActive.boiteActive$.subscribe(state => {
+      this.boiteIsActive = state;
+    });
+    this.menuActive.menuActive$.subscribe(state => {
+      this.menuIsActive = state;
     });
   }
+
+  logout(){
+    this.keycloakService.logout();
+
+    /* const allCookies: {} = this.cookieService.getAll(); // Obtenez tous les cookies
+    for (const cookieName in allCookies) {
+      // Parcourez tous les cookies et supprimez-les
+      if (allCookies.hasOwnProperty(cookieName)) {
+        this.cookieService.delete(cookieName);
+      }
+    } */
+  }
+  public home(): void {
+    window.location.href = 'http://172.24.7.200:5500/ems';
+  }
+
+  public management(): void {
+     this.keycloakService.management();
+  }
+
+  public isSmallScreen:boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isSmallScreen = window.innerWidth < 768;
+  }
+
+  private profile = this.keycloakService.profile
+
+  public boiteIsActive: boolean = false;
+
+  public toggleBoiteActive(): void {
+    this.boiteActive.toggleBoiteActive();
+  }
+
+
 
 
 }

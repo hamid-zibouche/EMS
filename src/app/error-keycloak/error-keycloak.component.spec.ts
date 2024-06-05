@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import { ErrorKeycloakComponent } from './error-keycloak.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('ErrorKeycloakComponent', () => {
+  let component: ErrorKeycloakComponent;
+  let fixture: ComponentFixture<ErrorKeycloakComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent]
+      imports: [ErrorKeycloakComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(ErrorKeycloakComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

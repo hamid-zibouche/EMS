@@ -1,13 +1,6 @@
-<div class="container">
-  <app-nav-bar ></app-nav-bar>
-
-  <div class="main" [class.active]="isMenuActive" >
-    <div class="topbar">
-      <div class="toggle" (click)="handleClick()">
-        <i class="bi bi-list"></i>
-      </div>
-    </div>
-    <router-outlet />
-  </div>
+<div>
+  <app-boite-dialog></app-boite-dialog>
+  <router-outlet />
 </div>
+
 
