@@ -1,6 +1,9 @@
-<div class="alert alert-danger d-flex align-items-center" role="alert">
-  <i class="bi bi-exclamation-triangle-fill text-center"></i>
-  <div class="align-content-center">
-     <h2>  Keycloak server down</h2>
+<div class="error-keycloak">
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    <h2 class="mb-0">The Keycloak server is down</h2>
+  </div>
+  <div class="text-center mt-3">
+    <button type="button" class="btn btn-primary" (click)="home()"><i class="bi bi-arrow-clockwise"></i>Retry</button>
   </div>
 </div>

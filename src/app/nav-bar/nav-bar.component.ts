@@ -1,13 +1,10 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
-
 import {NgClass, NgIf} from "@angular/common";
 import {KeycloakService} from "../services/keycloak/keycloak.service";
 import {BoiteActiveService} from "../shared/boitActive/boite-active.service";
 import {MenuActiveService} from "../shared/menuActive/menu-active.service";
-
-
-
+import {ConfigService} from "../services/config/config.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,7 +22,7 @@ export class NavBarComponent implements OnInit {
 
   public username:string|undefined
 
-  constructor(private keycloakService: KeycloakService,private router: Router, private boiteActive:BoiteActiveService,private menuActive : MenuActiveService) {
+  constructor(private keycloakService: KeycloakService,private router: Router, private boiteActive:BoiteActiveService,private menuActive : MenuActiveService,private configService : ConfigService) {
   }
 
   public menuIsActive: boolean = false;
@@ -35,10 +32,18 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /* this.toggleDropdown(); */
-    if(this.profile){
-    this.username = this.profile.username;
-    }
+
+    this.keycloakService.keycloakInitialized.subscribe(initialized => {
+      if (initialized) {
+        this.keycloakService.profile.subscribe(profile => {
+          if (profile) {
+            this.username = profile.username;
+          } else {
+            console.log("User profile not loaded");
+          }
+        });
+      }
+    });
     this.checkScreenSize();
     this.boiteActive.boiteActive$.subscribe(state => {
       this.boiteIsActive = state;
@@ -60,7 +65,9 @@ export class NavBarComponent implements OnInit {
     } */
   }
   public home(): void {
-    window.location.href = 'http://172.24.7.200:5500/ems';
+    this.configService.getConfig().subscribe((data: any) => {
+      window.location.href = data.home.url;
+    });
   }
 
   public management(): void {
@@ -85,8 +92,5 @@ export class NavBarComponent implements OnInit {
   public toggleBoiteActive(): void {
     this.boiteActive.toggleBoiteActive();
   }
-
-
-
 
 }

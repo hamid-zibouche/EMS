@@ -1,0 +1,18 @@
+.error-keycloak {
+
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  min-width: 60%;
+  max-width: 90%;
+  min-height: 60%;
+  max-height: 90%;
+  background-color:white;
+  border-radius:10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  padding: 30px;
+}

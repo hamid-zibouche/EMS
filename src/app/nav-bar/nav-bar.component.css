@@ -37,6 +37,10 @@ div img{
   cursor:auto;
   text-align: center;
   color: white;
+
+}
+.username{
+  font-weight: bold;
 }
 
 

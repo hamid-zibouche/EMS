@@ -1,17 +1,30 @@
 /* loader.component.css */
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 17px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #0060b5;
   width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+  height:120px;
+  animation: spin 1s linear infinite;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 41%;
+  left: 45%;
   transform: translate(-50%, -50%);
+  z-index: 3000;
 }
-
+.filter-blanc {
+  display: none;
+}
+.active{
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255,0.8);
+  z-index: 2000;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

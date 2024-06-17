@@ -1,34 +1,33 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuActiveService} from "../shared/menuActive/menu-active.service";
 import {NavBarComponent} from "../nav-bar/nav-bar.component";
+import {ConfigService} from "../services/config/config.service";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [
-        NavBarComponent
-    ],
+  imports: [
+    NavBarComponent,
+    NgForOf
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private menuActiveService: MenuActiveService) {}
+  public applications : any[]=[];
 
-  public commander() {
-    console.log("Redirecting to Commander");
-    window.open("https://172.24.7.200/commander", "_blank"); // Ouvre le lien dans un nouvel onglet
-  }
+  constructor(private menuActiveService: MenuActiveService,private configService : ConfigService) {}
 
-  public opensearch() {
-    console.log("Redirecting to OpenSearch");
-    window.open("https://172.24.7.200/dashboard", "_blank"); // Ouvre le lien dans un nouvel onglet
-  }
 
   ngOnInit(){
     this.menuActiveService.menuActive$.subscribe(state => {
       this.menuIsActive = state;
     });
+    this.configService.getConfig().subscribe((data: any) => {
+      this.applications = data.applications;
+    })
   }
 
   public menuIsActive: boolean = false;
@@ -41,4 +40,7 @@ export class HomeComponent implements OnInit {
     this.menuActiveService.fermerMenuActive();
   }
 
+  public openApplication(url: string) {
+    window.open(url, "_blank");
+  }
 }

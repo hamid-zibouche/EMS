@@ -47,34 +47,36 @@ body {
 
 .link-container {
   display: flex;
-  flex-direction: row; /* Default to row for large screens */
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 80vh;
+  height: 50vh;
+  flex-wrap: wrap;
 }
 
 /* Media query for smaller screens */
+/*
 @media (max-width: 800px) {
   .link-container {
-    flex-direction: column; /* Change to column for smaller screens */
-    height: auto; /* Adjust height for vertical layout */
+    flex-direction: column;
+    height: auto;
   }
 
   .link-box {
-    margin-bottom: 40px; /* Add some space between the boxes */
+    margin-bottom: 40px;
   }
 
   .link-box:last-child {
-   /* Remove margin for the last box */
   }
   .link-box:first-child{
     margin-right: 0;
   }
 }
+*/
 
 .link-box {
   position: relative;
-  width: 100%;
+  width: 420px;
   height: 200px;
   border-radius: 8px;
   border: 1px solid var(--blue);
@@ -87,21 +89,13 @@ body {
   transform: translateY(-6px);
 }
 
-.opendashboard,.commander{
+.app{
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;
   filter: blur(2px); /* Adjust the blur level as needed */
   transition: filter 0.3s ease;
-}
-
-.opendashboard {
-  background-image: url("./assets/opensearch.png");
-}
-
-.commander {
-  background-image: url("./assets/commandercapture.png");
 }
 
 .link-box img {
@@ -112,11 +106,12 @@ body {
   background-color: #fff;
 }
 
-.link-box a {
+.link-box .label,.cadre{
   position: absolute;
   top: 20%;
   left: 50%;
-  width: 40%;
+  width: fit-content;
+  max-width: 100%;
   transform: translate(-50%, -50%);
   background-color: #003366;
   color: white;
@@ -129,6 +124,11 @@ body {
   display: flex; /* Utilisation de Flexbox */
   justify-content: center; /* Centre horizontalement le contenu */
   align-items: center; /* Centre verticalement le contenu */
+  white-space: nowrap; /* Empêche le texte de se briser */
+
+}
+.cadre{
+  width: 40%;
 }
 
 .logo-E {
@@ -164,8 +164,10 @@ body {
   }
 } */
 
-.link-box:hover a {
+.link-box:hover .cadre {
   width: 100%;
+}
+.link-box:hover .label {
   text-decoration: underline;
 }
 

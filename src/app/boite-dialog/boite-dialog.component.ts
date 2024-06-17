@@ -20,7 +20,13 @@ import {BoiteActiveService} from "../shared/boitActive/boite-active.service";
 })
 export class BoiteDialogComponent implements OnInit{
   ngOnInit(): void {
-    this.getRoles();
+    //on recuperer les roles qu'apres l'initialisation de keycloak
+    this.keycloakService.keycloakInitialized.subscribe(initialized => {
+      if (initialized) {
+        this.getRoles();
+      }
+    });
+
     console.log("boite-dialogue",this.roles);
 
     this.boiteActive.boiteActive$.subscribe(state => {

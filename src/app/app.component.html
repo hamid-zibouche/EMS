@@ -1,6 +1,8 @@
-<div>
-  <app-boite-dialog></app-boite-dialog>
-  <router-outlet />
-</div>
+<app-loader *ngIf="!keycloakInitilised">
+</app-loader>
+  <div>
+    <app-boite-dialog></app-boite-dialog>
+    <router-outlet />
+  </div>
 
 

@@ -9,6 +9,7 @@ import {BoiteDialogComponent} from "./boite-dialog/boite-dialog.component";
 import {LoaderComponent} from "./loader/loader.component";
 import {LoaderService} from "./loader/loader.service";
 import {Observable} from "rxjs";
+import {ConfigService} from "./services/config/config.service";
 
 @Component({
   selector: "app-root",
@@ -27,12 +28,13 @@ import {Observable} from "rxjs";
   ]
 })
 
-export class AppComponent{
+export class AppComponent implements OnInit {
   title:string="Easier";
   isMenuActive: boolean = false;
   loading$: Observable<boolean>;
+  keycloakInitilised: boolean | undefined;
 
-  constructor(private sharedService: NavBarService, private keycloakService: KeycloakService, private loaderService: LoaderService) {
+  constructor(private sharedService: NavBarService, private keycloakService: KeycloakService, private loaderService: LoaderService,private configService: ConfigService) {
     this.loading$ = this.loaderService.loading$;
   }
 
@@ -40,5 +42,17 @@ export class AppComponent{
     this.sharedService.menuClicked();
     this.isMenuActive = !this.isMenuActive;
   }
+
+  ngOnInit(): void {
+    this.keycloakService.keycloakInitialized.subscribe(initialized => {
+      if (initialized) {
+        this.keycloakInitilised = true;
+      }else{
+
+      }
+    });
+  }
+
+
 
 }
