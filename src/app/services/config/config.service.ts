@@ -5,12 +5,13 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ConfigService {
+
   private readonly CONFIG_URL = '/ems-home/assets/config/config.json';
   private config: any;
 
   constructor(private http: HttpClient) {}
 
   getConfig() {
-    return this.http.get('/ems-home/assets/config/config.json');
+    return this.http.get(this.CONFIG_URL);
   }
 }
