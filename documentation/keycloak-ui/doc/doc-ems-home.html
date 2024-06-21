@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>doc-ems-home.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="quelle-est-la-finalit%C3%A9-de-lapplication-ems-home">Quelle est la finalité de l'application EMS-Home ?</h1>
+<p>L'application <strong>EMS-Home</strong> a pour finalité de servir de point d'accès centralisé à plusieurs applications au sein d'un environnement d'entreprise. Elle permet aux utilisateurs de naviguer facilement entre différentes applications sans avoir à se réauthentifier à chaque fois, grâce à l'intégration d'un système d'authentification unique (Single Sign-On) via Keycloak.</p>
+<h1 id="quels-probl%C3%A8mes-cette-application-r%C3%A9sout-elle">Quels problèmes cette application résout-elle ?</h1>
+<p><strong>EMS-Home</strong> résout plusieurs problèmes majeurs :</p>
+<ol>
+<li><strong>Multiples Authentifications</strong> : En intégrant un système d'authentification unique, les utilisateurs n'ont pas besoin de se reconnecter à chaque application individuellement, ce qui simplifie et accélère l'accès aux ressources.</li>
+<li><strong>Gestion Centralisée des Utilisateurs</strong> : L'application centralise la gestion des utilisateurs et des rôles, facilitant ainsi l'administration et la maintenance des droits d'accès.</li>
+<li><strong>Déconnexion Automatique</strong> : Lorsqu'un utilisateur se déconnecte d'une application, il est automatiquement déconnecté de toutes les autres applications, assurant ainsi une sécurité accrue.</li>
+</ol>
+<h1 id="comment-r%C3%A9cup%C3%A9rer-le-code-source-de-lapplication-ems-home">Comment récupérer le code source de l'application EMS-HOME ?</h1>
+<p>Pour cloner le dépôt contenant le code source de l'application EMS-HOME, vous pouvez utiliser la commande suivante :</p>
+<pre class="hljs"><code><div>git clone git@gitlab.ier.group:ems/internship/commanderui.git
+</div></code></pre>
+<h1 id="comment-%C3%A7a-marche">Comment ça marche ?</h1>
+<h2 id="1-acc%C3%A8s-%C3%A0-lapplication-ems-home">1. Accès à l'application EMS-Home</h2>
+<p>L'application EMS-Home est accessible via l'URL suivante : <a href="https://172.24.7.200/ems-home">https://172.24.7.200/ems-home</a>.</p>
+<div style="page-break-after: always;"></div>
+<h2 id="2-connexion">2. Connexion</h2>
+<p>Une fois sur la page d'accueil, vous êtes invité à vous connecter avec un compte EMS via le service d'authentification Keycloak.</p>
+<p><img src="image-5.png" alt="alt text"></p>
+<h2 id="3-page-daccueil">3. Page d'accueil</h2>
+<p>Après une connexion réussie, vous êtes redirigé vers la page d'accueil de l'application EMS-Home. Sur cette page, vous pouvez accéder aux différentes applications disponibles telles que <strong>Commander</strong> et <strong>OpenSearch</strong>, selon la configuration.</p>
+<p><img src="image-6.png" alt="alt text"></p>
+<div style="page-break-after: always;"></div>
+<h2 id="4-acc%C3%A8s-%C3%A0-lapplication-commander">4. Accès à l'application Commander</h2>
+<p>En cliquant sur <strong>Commander</strong>, vous êtes redirigé vers cette application sans avoir besoin de vous reconnecter.</p>
+<p><img src="image-10.png" alt="alt text"></p>
+<h2 id="5-acc%C3%A8s-%C3%A0-lapplication-opensearch">5. Accès à l'application OpenSearch</h2>
+<p>De la même manière, en cliquant sur <strong>OpenSearch</strong>, vous êtes redirigé vers cette application sans avoir besoin de vous reconnecter.</p>
+<p><img src="image-7.png" alt="alt text"></p>
+<div style="page-break-after: always;"></div>
+<h2 id="6-menu-de-navigation">6. Menu de navigation</h2>
+<p>Sur la barre de navigation, un menu déroulant est disponible avec les options suivantes :</p>
+<ul>
+<li><strong>Manage Account</strong> : Gestion du compte</li>
+<li><strong>View Roles</strong> : Visualisation des rôles</li>
+<li><strong>Logout</strong> : Déconnexion</li>
+</ul>
+<p><img src="image-8.png" alt="alt text"></p>
+<h2 id="7-visualisation-des-r%C3%B4les">7. Visualisation des rôles</h2>
+<p>Vous pouvez voir les rôles de l'utilisateur actuel pour les différentes applications disponibles.</p>
+<p><img src="image-9.png" alt="alt text"></p>
+<div style="page-break-after: always;"></div>
+<h2 id="8-d%C3%A9connexion">8. Déconnexion</h2>
+<p>Pour vous déconnecter de toutes les applications, il suffit de vous déconnecter de EMS-Home. Cela déconnectera automatiquement toutes les autres applications.</p>
+<h1 id="comment-lapplication-est-elle-configur%C3%A9e">Comment l'application est-elle configurée ?</h1>
+<p>L'application <strong>ems-home</strong> est développée avec Angular CLI et comprend plusieurs composants et services essentiels à son bon fonctionnement. L'un des services les plus cruciaux est <strong>Keycloak</strong>, qui assure la sécurité de l'application et permet la gestion du single sign-on (SSO).</p>
+<h2 id="initialisation-de-keycloak">Initialisation de Keycloak</h2>
+<p>Le service Keycloak est initialisé dans le <strong>KeycloakService</strong> via la fonction <code>init()</code>. Cette fonction récupère la configuration Keycloak à partir d'un service de configuration, puis initialise le client Keycloak avec les paramètres appropriés (URL, realm, clientId). Voici comment cette fonction est implémentée :</p>
+<pre class="hljs"><code><div>init() {
+  <span class="hljs-keyword">this</span>.configService.getConfig().subscribe(<span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">any</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">this</span>.config = data.keycloak;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"config:"</span>, <span class="hljs-keyword">this</span>.config.clientId);
+
+    <span class="hljs-keyword">this</span>._keycloak = <span class="hljs-keyword">new</span> Keycloak({
+      url: <span class="hljs-keyword">this</span>.config.url,
+      realm: <span class="hljs-keyword">this</span>.config.realm,
+      clientId: <span class="hljs-keyword">this</span>.config.clientId,
+    });
+
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Keycloak initialization started'</span>, <span class="hljs-keyword">this</span>.config);
+    <span class="hljs-keyword">this</span>.loaderService.show();
+
+    <span class="hljs-keyword">this</span>._keycloak.init({
+      onLoad: <span class="hljs-string">'login-required'</span>,
+    }).then(<span class="hljs-keyword">async</span> authenticated =&gt; {
+      <span class="hljs-keyword">if</span> (authenticated) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User authenticated successfully'</span>);
+        <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.loadProfile();
+        <span class="hljs-keyword">this</span>._details = <span class="hljs-keyword">this</span>._keycloak?.resourceAccess;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'details:'</span>, <span class="hljs-keyword">this</span>._details);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.warn(<span class="hljs-string">'User is not authenticated'</span>);
+      }
+      <span class="hljs-keyword">this</span>._keycloakInitialized.next(<span class="hljs-literal">true</span>);
+    }).catch(<span class="hljs-function"><span class="hljs-params">initError</span> =&gt;</span> {
+      <span class="hljs-keyword">this</span>._keycloakInitialized.next(<span class="hljs-literal">true</span>);
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Keycloak initialization failed:'</span>, initError);
+      <span class="hljs-keyword">this</span>.router.navigate([<span class="hljs-string">'/errorkeycloakinit'</span>]);
+    }).finally(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Finalizing Keycloak initialization"</span>);
+      <span class="hljs-keyword">this</span>.loaderService.hide();
+      <span class="hljs-keyword">this</span>._keycloakInitialized.next(<span class="hljs-literal">true</span>);
+    });
+  });
+}
+</div></code></pre>
+<h2 id="application-de-la-configuration">Application de la Configuration</h2>
+<p>Cette fonction d'initialisation est appelée dans le fichier <strong>app.config.ts</strong> afin de s'appliquer à toute l'application, garantissant que chaque accès nécessite une authentification via le service Keycloak.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { provideRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { routes } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.routes'</span>;
+<span class="hljs-keyword">import</span> { HttpClientJsonpModule, HttpClientModule } <span class="hljs-keyword">from</span> <span class="hljs-string">"@angular/common/http"</span>;
+<span class="hljs-keyword">import</span> { KeycloakService } <span class="hljs-keyword">from</span> <span class="hljs-string">"./services/keycloak/keycloak.service"</span>;
+<span class="hljs-keyword">import</span> { ConfigService } <span class="hljs-keyword">from</span> <span class="hljs-string">"./services/config/config.service"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kcFactory</span>(<span class="hljs-params">kcService: KeycloakService</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kcService.init();
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  providers: [
+    ConfigService,
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: kcFactory,
+      deps: [KeycloakService],
+      multi: <span class="hljs-literal">true</span>
+    },
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(HttpClientJsonpModule),
+  ]
+};
+</div></code></pre>
+<div style="page-break-after: always;"></div>
+<h2 id="configuration-keycloak">Configuration Keycloak</h2>
+<p>Lors de l'appel au service Keycloak, le client est automatiquement redirigé vers l'URL de Keycloak spécifiée avec le realm et le clientId déjà créés sur Keycloak. Voici les étapes de configuration dans Keycloak :</p>
+<ol>
+<li>
+<p><strong>Création d'un client avec des configurations spécifiques pour l'application ems-home :</strong>
+<img src="image.png" alt="Création du client"></p>
+</li>
+<li>
+<p><strong>Ajout de deux rôles pour le client ems-home :</strong>
+<img src="image-1.png" alt="Ajout de rôles"></p>
+</li>
+<li>
+<p><strong>Application d'un thème personnalisé :</strong>
+<img src="image-3.png" alt="Thème personnalisé"></p>
+</li>
+<li>
+<p><strong>Configuration de l'interface de connexion multilingue :</strong>
+<img src="image-4.png" alt="Interface multilingue"></p>
+</li>
+</ol>
+<h2 id="fichier-de-configuration-configjson">Fichier de Configuration (config.json)</h2>
+<p>L'application repose sur un fichier de configuration nommé <code>config.json</code>, qui contient toutes les configurations de démarrage, URL et autres paramètres essentiels.</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"keycloak"</span>: {
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200:8843"</span>, <span class="hljs-comment">// URL du serveur Keycloak</span>
+    <span class="hljs-attr">"realm"</span>: <span class="hljs-string">"ems"</span>,                      <span class="hljs-comment">// Nom du realm Keycloak</span>
+    <span class="hljs-attr">"clientId"</span>: <span class="hljs-string">"Ems-Home"</span>               <span class="hljs-comment">// ID du client Keycloak</span>
+  },
+  <span class="hljs-attr">"home"</span>: {
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200/ems-home/ems"</span> <span class="hljs-comment">// URL de la page d'accueil de l'application</span>
+  },
+  <span class="hljs-attr">"logout"</span>: {
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200/ems-home/ems"</span> <span class="hljs-comment">// URL de déconnexion</span>
+  },
+  <span class="hljs-attr">"applications"</span>: [
+    {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"commander"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200"</span>,
+      <span class="hljs-attr">"label"</span>: <span class="hljs-string">"Commander"</span>,
+      <span class="hljs-attr">"imageUrl"</span>: <span class="hljs-string">"./assets/images/commander.png"</span> <span class="hljs-comment">// URL de l'image du bouton Commander</span>
+    },
+    {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"opensearch"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200/dashboard"</span>,
+      <span class="hljs-attr">"label"</span>: <span class="hljs-string">"OpenSearch"</span>,
+      <span class="hljs-attr">"imageUrl"</span>: <span class="hljs-string">"./assets/images/opensearch.png"</span> <span class="hljs-comment">// URL de l'image du bouton OpenSearch</span>
+    },
+    {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"APPtest"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://172.24.7.200/apptest"</span>,
+      <span class="hljs-attr">"label"</span>: <span class="hljs-string">"AppTest"</span>,
+      <span class="hljs-attr">"imageUrl"</span>: <span class="hljs-string">"./assets/images/no-images.jpg"</span> <span class="hljs-comment">// URL de l'image du bouton AppTest</span>
+    }
+  ]
+}
+</div></code></pre>
+<h1 id="comment-g%C3%A9n%C3%A9rer-et-d%C3%A9ployer-lapplication-ems-home">Comment générer et déployer l'application EMS-home?</h1>
+<p>Pour déployer l'application EMS-home sur le serveur, il faut d'abord générer l'image Docker de l'application.</p>
+<h2 id="%C3%A9tapes-pour-g%C3%A9n%C3%A9rer-limage-docker">Étapes pour générer l'image Docker</h2>
+<h4 id="1-cr%C3%A9er-un-fichier-dockerfile--ce-fichier-contient-les-instructions-n%C3%A9cessaires-pour-construire-limage-docker-de-lapplication">1. <strong>Créer un fichier Dockerfile</strong> : Ce fichier contient les instructions nécessaires pour construire l'image Docker de l'application.</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">## Utiliser l'image node:18 comme étape de construction</span>
+<span class="hljs-keyword">FROM</span> node:<span class="hljs-number">18</span> as build-stage
+
+<span class="hljs-comment"># Définir le répertoire de travail</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /app</span>
+
+<span class="hljs-comment"># Copier les fichiers package.json et package-lock.json</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> package*.json ./</span>
+
+<span class="hljs-comment"># Installer les dépendances</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> npm install</span>
+
+<span class="hljs-comment"># Copier tous les fichiers de l'application</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> . .</span>
+
+<span class="hljs-comment"># Construire l'application pour la production</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> npm run build --prod</span>
+
+<span class="hljs-comment"># Utiliser l'image nginx:alpine comme étape finale</span>
+<span class="hljs-keyword">FROM</span> nginx:alpine
+
+<span class="hljs-comment"># Copier la configuration nginx personnalisée</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> nginx.conf /etc/nginx/nginx.conf</span>
+
+<span class="hljs-comment"># Copier les fichiers construits depuis l'étape de construction</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> --from=build-stage /app/dist/test3 /usr/share/nginx/html</span>
+
+<span class="hljs-comment"># Exposer le port 8080</span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8080</span>
+
+</div></code></pre>
+<h4 id="2-construire-limage-docker--ex%C3%A9cutez-la-commande-suivante-pour-cr%C3%A9er-limage-docker">2. Construire l'image Docker : Exécutez la commande suivante pour créer l'image Docker.</h4>
+<pre class="hljs"><code><div>docker build -t easierrep/ems-home:latest .
+</div></code></pre>
+<h4 id="3-pousser-limage-sur-docker-hub--utilisez-cette-commande-pour-envoyer-limage-docker-au-d%C3%A9p%C3%B4t-docker-hub">3. Pousser l'image sur Docker Hub : Utilisez cette commande pour envoyer l'image Docker au dépôt Docker Hub.</h4>
+<pre class="hljs"><code><div>docker push easierrep/ems-home:latest
+</div></code></pre>
+<h2 id="d%C3%A9ploiement-sur-le-serveur">Déploiement sur le serveur</h2>
+<h4 id="1-r%C3%A9cup%C3%A9rer-limage-docker-sur-le-serveur--connectez-vous-au-serveur-via-ssh-et-t%C3%A9l%C3%A9chargez-limage-docker">1. Récupérer l'image Docker sur le serveur : Connectez-vous au serveur via SSH et téléchargez l'image Docker.</h4>
+<pre class="hljs"><code><div>docker pull easierrep/ems-home:latest
+</div></code></pre>
+<h4 id="2-mettre-%C3%A0-jour-le-fichier-docker-compose--ajoutez-le-service-ems-home-dans-le-fichier-emsemskeycloakdocker-composeyml">2. Mettre à jour le fichier docker-compose : Ajoutez le service ems-home dans le fichier /ems/ems_keycloak/docker-compose.yml.</h4>
+<pre class="hljs"><code><div><span class="hljs-attr">ems-home:</span>
+  <span class="hljs-attr">container_name:</span> <span class="hljs-string">ems-home</span>
+  <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+  <span class="hljs-attr">image:</span> <span class="hljs-string">easierrep/ems-home:1.1.2</span>
+  <span class="hljs-attr">ports:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"5500:8080"</span>
+  <span class="hljs-attr">networks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">opensearch-net</span>
+  <span class="hljs-attr">volumes:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">./ems-home-volumes/config:/usr/share/nginx/html/browser/assets/config</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">./ems-home-volumes/images:/usr/share/nginx/html/browser/assets/images</span>
+</div></code></pre>
+<h4 id="3-configurer-nginx-pour-https--ajoutez-la-configuration-suivante-dans-le-fichier-nginx-emsemskeycloaknginxsslnginxconfig-pour-rendre-lapplication-accessible-via-https">3. Configurer Nginx pour HTTPS : Ajoutez la configuration suivante dans le fichier Nginx /ems/ems_keycloak/nginx/ssl/nginx.config pour rendre l'application accessible via HTTPS.</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">location</span> /ems-home/ {
+    <span class="hljs-attribute">proxy_pass</span> http://ems-home:8080/;
+    <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$http_host</span>;
+    <span class="hljs-attribute">sub_filter_types</span> text/html;
+    <span class="hljs-attribute">sub_filter</span> <span class="hljs-string">'href="/'</span> <span class="hljs-string">'href="/ems-home/'</span>;
+    <span class="hljs-attribute">sub_filter</span> <span class="hljs-string">'src="/'</span> <span class="hljs-string">'src="/ems-home/'</span>;
+    <span class="hljs-attribute">sub_filter_once</span> <span class="hljs-literal">off</span>;
+}
+</div></code></pre>
+<h4 id="4-lancer-le-docker-compose--ex%C3%A9cutez-les-commandes-suivantes-pour-d%C3%A9marrer-les-services-d%C3%A9finis-dans-le-fichier-docker-composeyml">4. Lancer le docker compose : Exécutez les commandes suivantes pour démarrer les services définis dans le fichier docker-compose.yml.</h4>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> /ems/ems_keycloak
+docker compose up
+</div></code></pre>
+<h3 id="acc%C3%A9der-%C3%A0-lapplication"><strong>Accéder à l'application:</strong></h3>
+<p>Une fois que tous les services sont démarrés, l'application EMS-home sera accessible via HTTPS à l'adresse suivante : <a href="https://172.24.7.200/ems-home">https://172.24.7.200/ems-home</a>.</p>
+
+</body>
+</html>
